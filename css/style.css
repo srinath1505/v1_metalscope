@@ -911,7 +911,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* ── COMMITMENT SECTION ───────────────────────────────────── */
 .commitment-section {
-  background: linear-gradient(180deg, var(--black-mid) 0%, var(--surface) 15%);
+  background: var(--surface);
 }
 .commitment-section .section-heading .section-tag { color: var(--navy); }
 .commitment-section .section-heading .section-tag::before { background: var(--navy); }
@@ -1137,7 +1137,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: grayscale(1) opacity(0.6);
+  filter: grayscale(0.8) opacity(0.85);
   transition: filter 0.35s, transform 0.35s var(--ease-out);
 }
 .client-logo-card:hover img { filter: grayscale(0) opacity(1); transform: scale(1.18); }

@@ -3,7 +3,7 @@
 ## Project
 Pure vanilla HTML5 / CSS3 / JS — zero frameworks.
 Repo: `madtitan0/Metalscope` (GitHub), branch `main`.
-Local path: `/Users/muhammedriyaz/Projects/metalscope-website/`
+Local path: `c:\Users\Srinath\Downloads\metalscope\Metalscope\`
 
 ---
 
@@ -12,99 +12,131 @@ Local path: `/Users/muhammedriyaz/Projects/metalscope-website/`
 - `--navy: #1a7fc1` / `--navy-dark: #1568a0`
 - `--black: #0A0A14` / `--black-mid: #12121F`
 - Fonts: Rajdhani (display), Inter (body), Barlow Condensed (numbers)
-- Clearbit logo API: `https://logo.clearbit.com/{domain}`
 
 ---
 
-## Pages
-| File | Status |
-|---|---|
-| `index.html` | Home — mostly done, content tweaks needed |
-| `about.html` | About / Who We Are — content tweaks needed |
-| `mission-vision.html` | Vision + Mission + Values — content tweaks needed |
-| `verticals.html` | Business Verticals overview — content tweaks needed |
-| `peb.html` | Pre-Engineered Buildings landing page |
-| `structural-steel.html` | Structural Steel landing page |
-| `bridges.html` | Bridges & Infrastructure landing page |
-| `railcar.html` | Railcar & Rolling Stock landing page |
-| `steel-doors.html` | Steel Doors landing page |
-| `epc.html` | EPC Projects — "content to be provided by client" |
-| `highrise-datacentres.html` | High-Rise & Data Centres — "content to be provided by client" |
-| `projects.html` | Projects portfolio — needs industry-wise cards |
-| `excellence.html` | Excellence — "content awaited from client" |
-| `media.html` | Media — "content to be provided by client" |
-| `contact.html` | Contact Us |
+## Verified Factual Details
+- **CIN**: `U28100TN1984PLC011023`
+- **Address**: Plot 14, Industrial Estate, Mettupalayam, Pondicherry — 605009, India
+- **Phone**: +91 413 224 8800
+- **Email**: projects@metalscopeindia.com
+- **Plants**: Pondicherry (HQ) + Vannur (Plant 2)
 
 ---
 
 ## Content Source — STRICT RULE
-**ALL text content must come exclusively from the PDF / content brief provided by the client.**
-File in repo: `METAL SCOPE - WEBSITE CONTENT Breakdown.pdf`
-Do NOT use AI-generated placeholder text. If a section says "(Content to be provided by client)" leave a visible placeholder.
+**ALL text content must come exclusively from:**
+`METAL SCOPE - WEBSITE CONTENT Breakdown.pdf` (in repo root)
+Do NOT use AI-generated text. Sections with no spec content get a visible "Content to be provided by client" placeholder.
 
 ---
 
-## Pending Tasks (Priority Order)
+## Completed Work
 
-### 1. Content Audit & Replacement — All Pages
-Go through every page and replace any text not from the PDF with exact PDF wording.
+### Phase 1 — Global JS & CSS
+- `js/main.js`: Added `window.tryFallbackLogo()` — Clearbit first, Google T1 favicon (256px) second, text badge third
+- `css/style.css`: Fixed `.commitment-section` background (removed dark gradient causing shadow below WOW section); improved logo visibility (`filter: grayscale(0.8) opacity(0.85)`)
 
-**Home page (`index.html`) — key content checks:**
-- Numbers section left side: Headline = "BUILT TO DELIVER PROJECTS", Sub = "ONE STOP SOLUTION FOR ALL YOUR STRUCTURAL NEEDS", paragraph verbatim from PDF p.2
-- Numbers right side: 20+ Years, 2 Factories, 20+ Bridges, 7000+ Coaches, 5000+ Projects
-- WOW section heading = "WAY OF WORKING", subheading = "PROJECT DELIVERY IS NOT OUR CLAIM, IT IS OUR SYSTEM!"
-- Key statement = "WE THINK IN KITS. EXECUTE IN PRECISION. DELIVER WITH CERTAINTY — END TO END"
-- Steps: DESIGN → ENGINEERING → PRODUCTION → PAINTING → DESPATCH → SITE ERECTION
-- Relay quote: "Every function is a runner in the relay, and passing the baton right, at the right time, to the right person is the essence of our culture."
-- Commitment section heading: "OUR COMMITMENT – POWERED BY THE THEORY OF CONSTRAINTS (TOC)"
-- Commitment cards (8): On-time Delivery / Reliable After-Sales Service / Over 20+ Years of Expertise / Valued Engineering Solution (Efficient Solution) / Quality System (Stringent) / Dynamic Team Work / Committed Partnership / Total Solution Provider
+### Phase 2 — index.html (Home)
+- All 47 Clearbit `onerror` handlers updated to call `tryFallbackLogo(this)`
+- 6 logo entries upgraded from text badges to Clearbit img tags: Arun Excello, E.S. Hospital, JIPMER, CSD, Indian Railways, MES
+- OLA project card: location → HOSUR, steel → 9,400 MT, dock levellers → 14
+- Painting step: IS 9999 → IS 6005
+- PEB flip card: added missing "Social & Institutional" sector
+- Fixed "Aircraft Hangers" → "Aircraft Hangars"
+- Section tag "Home Page" → "Our Capabilities"
+- CIN and address corrected
 
-**About page (`about.html`) — key content:**
-- Tagline: "Built on Steel, Driven by Vision: A Legacy of Engineering Excellence"
-- 6 pillars: Engineering Legacy / Infrastructure at Scale / Built for Tomorrow / Precision in Every Structure / Trusted Across Industries / Strength Through Innovation (exact text from PDF p.12)
-- What We Do heading: "Engineering the Future of Steel Infrastructure"
-- 6 boxes from PDF p.13 (End-to-End Execution / Built for Scale / Manufacturing Excellence / Powering Industries / Sustainable by Design / Precision. Quality. Delivery.)
-- Finishing line: "By combining engineering intelligence with execution flexibility, MetalScope delivers customized steel solutions aligned with timelines, budgets, operational goals, and global quality standards."
-- Chairman's Message: V. Santhanam, exact text from PDF p.14
+### Phase 3 — about.html
+- h2 fixed: "WHO WE ARE"
+- Split merged box into two separate cards: "Powering Industries" + "Railway Engineering Expertise"
+- Added Box 8: "Built Around Client Needs"
+- Added bottom badges row: 5000+ Projects | 1.5M+ MT Steel | 25+ Industries | PAN INDIA
+- Added "Our Vision" section: `BUILD WHAT ENDURES.` with spec bullet points
+- CIN and address corrected
 
-**Mission-Vision page (`mission-vision.html`):**
-- Vision heading: "BUILD WHAT ENDURES." + 2 bullet points from PDF p.14
-- Mission heading: "DELIVER CERTAINTY." + 2 bullet points from PDF p.15
-- 4 Core Values from PDF p.15: Engineering Excellence / On-time Delivery / Sustainable Building / Customer Trust
+### Phase 4 — mission-vision.html
+- Footer address: added missing "Mettupalayam," and corrected pin
+- CIN corrected
 
-### 2. WOW Section — Line During Hover (FIXED in commit 3d...)
-The connecting line was bleeding through the hovered icon because the hover background was semi-transparent. Fixed by keeping `background: var(--black-mid)` (solid) on hover.
+### Phase 5 — peb.html
+- Applications bento grid: fixed "Factories & Assembly Plants" → "Factories"; "Warehouses & Logistics Hubs" → "Warehouses"
+- Added Row 4 bento cards: Supermarkets, Airport Terminal Buildings, Petrol Pumps, Poultry Farms & Agriculture
+- CIN and address corrected
 
-### 3. Hero Tag (FIXED)
-"India's Trusted Structural Engineering Partner" bar — background is now `var(--navy)` (blue), text is white.
+### Phase 5 — structural-steel.html
+- Added spec metrics: "5–8 times stiffer / nearly 10 times more resistant than concrete"
+- Added: "Steel columns are 3–6 times lighter than concrete..."
+- CIN and address corrected
 
-### 4. Projects Page — Industry Cards
-`projects.html` needs industry-wise cards per PDF pp.25-30. Each card: image, industry name, associated clients (text or logos), hover interaction.
-Full industry list from PDF: Automotive / Construction Equipment / EV / Electronic Mfg Services / Equipment & Machinery / Heavy Equipment / Home Appliances / FMCG / Food & Beverage / Pharmaceutical / Semi-conductor / Tire & Rubber / Oil & Gas / Renewable Energy / SEZ / Shoe Mfg / Yellow Goods / Japanese Industrial / Speciality Chemical / Process Industry / Pressure Valve / High-Rise Buildings / Data Centres / Social Infrastructure / Commercial Complexes / Multi-Level Buildings / Transportation & Logistics
+### Phase 5 — bridges.html / railcar.html
+- CIN and address corrected on both
+- railcar.html: fixed "5950+" → "5950"
 
-### 5. Projects — "Know More" Redirection (Team Issue #3)
-Currently all project "Know More" buttons go to `projects.html` generically. Each should eventually link to a per-project detail page or at minimum anchor to the relevant industry section.
+### Phase 5 — steel-doors.html
+- Replaced 3 AI-generated intro paragraphs with exact spec text (p.24)
+- CIN and address corrected
 
-### 6. Flip Cards on Home — Exact PDF Content
-Current flip cards may have incomplete content. Verify against PDF:
-- PEB flip side: 5 sectors with all sub-items (Industrial / Warehouse / Commercial / Social & Institutional / Transportation Infrastructure)
-- Infrastructure: ROB / RUB / FOB / Flyover / Network Marine Arch Bridge
-- Rail Coaches: MEMU 2000+ / EMU 2000+ / DMU 2000+ / Vande Bharat 520 / LHB 3500+ / 5950 components
-- Modular Buildings: Assembling at Site / Interlocked Cabinets / Modular Homes / Modular Buildings / High Rise Buildings / Data Centres / Composite Structures
+### Phase 6 — epc.html
+- Removed fake project showcase section (invented MT tonnages, ₹800Cr figures, fake clients)
+- Removed fake EPC scope summary with invented stats
+- Replaced with "Content to be provided by client" placeholder box
+- CIN and address corrected
 
-### 7. Images (Team Issue #2)
-Actual MetalScope project images need to be added. Currently using Unsplash placeholders. Client to provide images.
+### Phase 6 — highrise-datacentres.html
+- Removed fake high-rise and data centre project showcases (invented 28-storey HQ, Cloud DC 120MW etc.)
+- Replaced with "Content to be provided by client" placeholder box
+- CIN and address corrected
 
-### 8. Clientele Section
-- Major brand logos load via Clearbit API (`logo.clearbit.com/{domain}`)
-- On image load failure → styled name badge (red-tinted odd, navy-tinted even)
-- Scale on hover: `transform: scale(1.18)` with smooth transition
-- Government/small entities without Clearbit entries remain as badges: CSD, Indian Railways, ICF Chennai, JIPMER, MES, MORTH, Ocean, S&T, Zigma, Senara, VME Precast, Qualtech Engineers
+### Phase 7 — projects.html
+- Replaced all 60+ portfolio cards (with AI-generated client names) with 27 spec-exact cards
+- Added missing **Category 5: Equipment & Machinery** (Schwing, Kobelco) — both filter button and card
+- Every client chip now matches the PDF exactly — no fabricated names
+- Key corrections: Automotive now shows Honda/Hyundai/Kia/Michelin/Daimler/Schwing/Kobelco/Terex/Ola Electric/TVS Eurogrip/Allison Transmission; Social Infrastructure shows JIPMER/EGS College/Venkateshwara College/Theivanai Ammal College/PSNA College Dindigul/Deccan/Chennai Maritime; Transport & Logistics → INS Rajali; Renewable Energy → Baetter; etc.
+- CIN and address corrected
 
-### 9. Testimonials
-- 3 video cards, all play buttons are navy blue
-- Cards: Honda Cars India (Automotive/PEB), Foxconn (Semiconductor/EMS), ICF Chennai (Railways/Rolling Stock)
-- Per PDF p.8: "A set of 3 testimonial videos to be placed" — actual YouTube/video links to be added by client
+### Phase 8 — verticals.html / excellence.html / media.html / contact.html
+- **verticals.html**: footer address corrected (added "Mettupalayam," + "India"); CIN corrected
+- **excellence.html**: CIN and address corrected (content skeleton was already correct)
+- **media.html**: CIN and address corrected (placeholder cards were already correct)
+- **contact.html**: Phone `+91 413 224 8800`; Email `projects@metalscopeindia.com`; Plant 2 `Krishnagiri` → `Vannur`; Registered Office address corrected; CIN corrected
+- **Global sweep**: Also fixed cookies.html, credits.html, privacy-policy.html, sitemap.html, terms.html — all now have correct CIN `U28100TN1984PLC011023` and pin `605009`
+
+---
+
+## Remaining Task — Logo Quality Improvement
+
+### Background
+Clearbit Logo API (`logo.clearbit.com/{domain}`) was shut down after HubSpot acquired Clearbit in 2024. The current fallback chain in `tryFallbackLogo()` in `js/main.js` is:
+1. Clearbit (likely fails for most domains)
+2. Google T1 favicon service at 256px (`t1.gstatic.com/faviconV2`) — works but returns small favicons, not proper logos
+3. Styled text badge as final fallback
+
+### What Needs To Be Done
+Replace the logo source with a working logo API. Two leading options:
+
+**Option A — logo.dev** (recommended)
+- API: `https://img.logo.dev/{domain}?token=YOUR_TOKEN&size=200`
+- Free tier available; good coverage of Indian corporate brands
+- Returns proper rectangular logos, not favicons
+- Update `tryFallbackLogo()` in `js/main.js` to use logo.dev as primary, Google T1 as secondary
+
+**Option B — Brandfetch**
+- API: `https://cdn.brandfetch.io/{domain}/w/400/h/400`
+- Broader coverage; some domains require API key
+- Returns high-quality brand assets
+
+### Files to Change
+- `js/main.js` — update `tryFallbackLogo()` function
+- `index.html` — update all `<img src="https://logo.clearbit.com/...">` `src` attributes to use new API
+
+---
+
+## Known Remaining Items (Not Yet Actioned)
+- **Images**: Actual MetalScope project photos needed — currently Unsplash placeholders. Client to provide.
+- **Testimonials**: 3 video cards on home page (Honda Cars India, Foxconn, ICF Chennai) — YouTube/video links to be added by client
+- **"Know More" links** on projects.html: currently all anchor to `projects.html` — needs per-project detail pages or section anchors
+- **epc.html / highrise-datacentres.html**: full content awaits client brief
 
 ---
 
@@ -114,23 +146,16 @@ Actual MetalScope project images need to be added. Currently using Unsplash plac
 - WOW section: odd steps = red icons, even steps = navy icons; connector line = red→navy gradient
 - WOW relay quote block → navy left border
 - Cert cards: odd = red icon/hover, even = navy icon/hover
-- Awards timeline year number → `var(--navy)` (was near-invisible rgba red)
 - Lead form tag + input focus → navy blue
 - Hero tag bar → `var(--navy)` background, white text
+- `.commitment-section` background → `var(--surface)` (no gradient)
+- Logo cards: `filter: grayscale(0.8) opacity(0.85)` at rest, full color on hover
 
 ---
 
-## Git History (recent)
+## Git History (pre-session)
 ```
 24fe66d Fix WOW hover line, blue hero tag, blue play buttons, logo domains
 6dc4fa4 UI polish: blue accents, blur fix, logo hover scale, year visibility
 9ffe98a Client revisions: brand colors, logos, clientele grid, 20-Years badge, portfolio gaps, mobile nav, about page
 ```
-
----
-
-## Known Issues / Warnings
-- Clearbit free API may rate-limit or return 404 for less-known companies — onerror badge fallback handles this gracefully
-- `projects.html` "Know More" links all point to `projects.html` — needs per-project routing
-- Some vertical landing pages (`epc.html`, `highrise-datacentres.html`) are "content to be provided by client" — keep placeholders
-- Excellence page and Media page are both "content awaited/to be provided by client"
