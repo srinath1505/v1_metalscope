@@ -569,8 +569,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 16px 40px rgba(215,34,38,0.12);
-  border-color: var(--red);
+  box-shadow: 0 16px 40px rgba(26,127,193,0.18);
 }
 .stat-card-icon {
   width: 40px;
