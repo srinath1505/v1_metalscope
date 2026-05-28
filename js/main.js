@@ -80,7 +80,7 @@ window.tryFallbackLogo = function(img) {
 
 /* ── COUNTERS ─────────────────────────────────────────────── */
 (function initCounters() {
-  const items = document.querySelectorAll('.stat-item');
+  const items = document.querySelectorAll('.stat-card');
   if (!items.length) return;
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {

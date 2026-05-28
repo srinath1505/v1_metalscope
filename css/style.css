@@ -541,55 +541,75 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: 480px;
 }
 .numbers-right {
-  padding: 60px 0 60px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0;
-}
-.stat-item {
+  padding: 60px 0 60px 40px;
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
 }
-.stat-item:first-child { border-top: 1px solid var(--border); }
-.stat-item::before {
-  content: '';
-  position: absolute;
-  left: -4px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--red);
-  transform: scaleY(0);
-  transition: transform 0.4s var(--ease-out);
+.stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  width: 100%;
 }
-.stat-item.visible::before { transform: scaleY(1); }
+.stat-card {
+  grid-column: span 2;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+  cursor: default;
+}
+.stat-card:nth-child(4),
+.stat-card:nth-child(5) {
+  grid-column: span 3;
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(215,34,38,0.12);
+  border-color: var(--red);
+}
+.stat-card-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--red);
+}
+.stat-card-icon svg {
+  width: 40px;
+  height: 40px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .stat-number {
   font-family: var(--font-num);
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-size: clamp(2rem, 3vw, 2.8rem);
   font-weight: 700;
   color: var(--red);
-  min-width: 140px;
   line-height: 1;
 }
-.stat-label {
+.stat-card-label {
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text);
-  line-height: 1.3;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 @media (max-width: 900px) {
   .numbers-grid { grid-template-columns: 1fr; }
   .numbers-left { padding: 64px 0 40px; border-right: none; border-bottom: 1px solid var(--border); }
   .numbers-right { padding: 40px 0 64px; }
+  .stat-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-card,
+  .stat-card:nth-child(4),
+  .stat-card:nth-child(5) { grid-column: span 1; }
 }
 
 /* ── BUSINESS VERTICALS (FLIP CARDS) ─────────────────────── */
@@ -2184,6 +2204,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: box-shadow 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 .vertical-hub-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
 .vertical-hub-card-img {
