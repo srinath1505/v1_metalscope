@@ -2,7 +2,7 @@
 
 ## Project
 Pure vanilla HTML5 / CSS3 / JS — zero frameworks.
-Repo: `madtitan0/Metalscope` (GitHub), branch `main`.
+Repo: `srinath1505/v1_metalscope` (GitHub), branch `main`. *(previously madtitan0/Metalscope)*
 Local path: `c:\Users\Srinath\Downloads\metalscope\Metalscope\`
 
 ---
@@ -62,16 +62,24 @@ Do NOT use AI-generated text. Sections with no spec content get a visible "Conte
 ### Phase 5 — peb.html
 - Applications bento grid: fixed "Factories & Assembly Plants" → "Factories"; "Warehouses & Logistics Hubs" → "Warehouses"
 - Added Row 4 bento cards: Supermarkets, Airport Terminal Buildings, Petrol Pumps, Poultry Farms & Agriculture
+- Added missing bento cards: Sugar Mills, Cement Plants
 - CIN and address corrected
 
 ### Phase 5 — structural-steel.html
+- Replaced all 4 AI-generated intro paragraphs with exact spec text
 - Added spec metrics: "5–8 times stiffer / nearly 10 times more resistant than concrete"
 - Added: "Steel columns are 3–6 times lighter than concrete..."
 - CIN and address corrected
 
-### Phase 5 — bridges.html / railcar.html
-- CIN and address corrected on both
-- railcar.html: fixed "5950+" → "5950"
+### Phase 5 — bridges.html
+- Replaced all 3 AI-generated intro paragraphs with exact spec text (removed fabricated IRS/IRC/AASHTO/Eurocode references)
+- CIN and address corrected
+
+### Phase 5 — railcar.html
+- Replaced all 3 AI-generated intro paragraphs with exact spec text
+- Added specialization list: Sidewalls, Roof structures, Underframes, Shell kit products, Cold Rolled Formed (CRF) railway products
+- Added spec closing statement on Cold Rolled Forming market leadership
+- Fixed "5950+" → "5950"
 
 ### Phase 5 — steel-doors.html
 - Replaced 3 AI-generated intro paragraphs with exact spec text (p.24)
@@ -92,7 +100,7 @@ Do NOT use AI-generated text. Sections with no spec content get a visible "Conte
 - Replaced all 60+ portfolio cards (with AI-generated client names) with 27 spec-exact cards
 - Added missing **Category 5: Equipment & Machinery** (Schwing, Kobelco) — both filter button and card
 - Every client chip now matches the PDF exactly — no fabricated names
-- Key corrections: Automotive now shows Honda/Hyundai/Kia/Michelin/Daimler/Schwing/Kobelco/Terex/Ola Electric/TVS Eurogrip/Allison Transmission; Social Infrastructure shows JIPMER/EGS College/Venkateshwara College/Theivanai Ammal College/PSNA College Dindigul/Deccan/Chennai Maritime; Transport & Logistics → INS Rajali; Renewable Energy → Baetter; etc.
+- Bottom CTA subheading replaced with spec text: "Partner with MetalScope for engineering-driven structural solutions designed for scale, precision, and long-term performance."
 - CIN and address corrected
 
 ### Phase 8 — verticals.html / excellence.html / media.html / contact.html
@@ -102,37 +110,51 @@ Do NOT use AI-generated text. Sections with no spec content get a visible "Conte
 - **contact.html**: Phone `+91 413 224 8800`; Email `projects@metalscopeindia.com`; Plant 2 `Krishnagiri` → `Vannur`; Registered Office address corrected; CIN corrected
 - **Global sweep**: Also fixed cookies.html, credits.html, privacy-policy.html, sitemap.html, terms.html — all now have correct CIN `U28100TN1984PLC011023` and pin `605009`
 
+### Phase 9 — Content Audit (index.html)
+Full spec audit against `metalscope_website_content.md` — all discrepancies corrected:
+- PEB flip card Industrial Sector list: removed non-spec "Automotive Industry"; expanded all abbreviations to exact spec names (21 items: Agriculture Industry, Battery Manufacturing, Capital Goods Industry, Construction / Building Material Factory, Electronic Manufacturing Services, Equipment & Machinery Industry, Factory Sheds, FMCG, Food & Beverage Industry, Heavy Equipment Industry, Home Appliances Manufacturing, Mezzanine Structures, Oil & Gas Industry (ONG), Pharma Industry, Poultries & Farms, Power & Energy Industry, Semi-Conductor Industries, SMCG, Special Economic Zone Clusters, Tire & Rubber Industry, Workshops)
+- Rail Coaches flip card: "520 Vande Bharat Parts" → "520 Vital Parts for Vande Bharat"; "5950+" → "5950"; removed non-spec "All Variants Covered"
+- WOW key statement: "CERTAINTY," → "CERTAINTY –" with trailing period
+- WOW Engineering step: "Load calcs" → "Load calculations"
+- WOW Site Erection step: "Own teams" → "Own deployment teams"
+
+### Phase 10 — Logo System Overhaul
+Replaced Brandfetch CDN (deprecated) with a two-tier system matching `logo.html` reference:
+
+**Primary sources (56 cards total):**
+- Google Favicon API (`https://www.google.com/s2/favicons?domain={domain}&sz=256`) for most companies
+- Wikimedia Commons SVGs for 12 companies with better assets: Daimler, Foxconn, Michelin, Mitsubishi, SHMZ, Voltas, BHEL, NTPC, Kobelco, Schwing Stetter, Fujita, Renault Nissan
+- Direct PNG URLs for 5 companies: E.S. Hospital, JIPMER, ICF Chennai, Senara Industrial Parks, Qualtech Engineers
+
+**`js/main.js` `tryFallbackLogo()` updated:**
+- Now parses `?domain=` query param from Google Favicon URLs
+- Falls back to `t1.gstatic.com/faviconV2` on first error
+- Falls back to `name-only` text badge on second error
+- For Wikimedia/direct URLs that fail: immediately shows name badge (no domain to parse)
+
+**`css/style.css` logo card changes:**
+- Logo image: fixed `width: 72px; height: 44px; object-fit: contain` — forces all logos to same standard size (small favicons zoom up, large SVGs shrink down)
+- Name badge: hidden by default; slides up as dark navy overlay (`rgba(10,20,50,0.86)`) on card hover
+- Removed `name-only` pill badges from cards that couldn't load logos (all cards now attempt an image first)
+
+### Phase 11 — Flip Card Equal Sizing Fix
+**Root cause:** `.flip-front` had `position: relative` which overrode the `position: absolute` set in the shared `.flip-front, .flip-back` rule. This put `.flip-front` in normal flow, making card height grow with content — cards with 2-line titles (PEB, Infrastructure) were physically taller than 1-line cards (Rail Coaches, Modular Buildings).
+
+**Fix applied (`css/style.css`):**
+- Removed `position: relative` from `.flip-front` — it now correctly uses `position: absolute; inset: 0` from the shared rule
+- Grid: `grid-template-columns: repeat(4, minmax(0, 1fr))` — prevents content min-width from making columns unequal
+- Grid: `grid-auto-rows: 440px` — grid owns all row heights explicitly
+- `.flip-card` restored to explicit `height: 440px`
+- `::after` bottom bar (gradient line) still works because `position: absolute` is itself a positioned ancestor
+
+### Phase 12 — Arrow Encoding Fix
+**Root cause:** The `→` character (U+2192, UTF-8: `E2 86 92`) was double-encoded — read as Windows-1252 giving `â†'`, then re-saved as UTF-8 (`C3 A2 E2 80 A0 E2 80 99`). Browsers rendered it as `â†'`.
+
+**Fix:** Replaced at raw byte level across all HTML files. All `Know More →` links and other `→` occurrences now stored correctly as `E2 86 92`.
+
 ---
 
-## Remaining Task — Logo Quality Improvement
-
-### Background
-Clearbit Logo API (`logo.clearbit.com/{domain}`) was shut down after HubSpot acquired Clearbit in 2024. The current fallback chain in `tryFallbackLogo()` in `js/main.js` is:
-1. Clearbit (likely fails for most domains)
-2. Google T1 favicon service at 256px (`t1.gstatic.com/faviconV2`) — works but returns small favicons, not proper logos
-3. Styled text badge as final fallback
-
-### What Needs To Be Done
-Replace the logo source with a working logo API. Two leading options:
-
-**Option A — logo.dev** (recommended)
-- API: `https://img.logo.dev/{domain}?token=YOUR_TOKEN&size=200`
-- Free tier available; good coverage of Indian corporate brands
-- Returns proper rectangular logos, not favicons
-- Update `tryFallbackLogo()` in `js/main.js` to use logo.dev as primary, Google T1 as secondary
-
-**Option B — Brandfetch**
-- API: `https://cdn.brandfetch.io/{domain}/w/400/h/400`
-- Broader coverage; some domains require API key
-- Returns high-quality brand assets
-
-### Files to Change
-- `js/main.js` — update `tryFallbackLogo()` function
-- `index.html` — update all `<img src="https://logo.clearbit.com/...">` `src` attributes to use new API
-
----
-
-## Known Remaining Items (Not Yet Actioned)
+## Known Remaining Items
 - **Images**: Actual MetalScope project photos needed — currently Unsplash placeholders. Client to provide.
 - **Testimonials**: 3 video cards on home page (Honda Cars India, Foxconn, ICF Chennai) — YouTube/video links to be added by client
 - **"Know More" links** on projects.html: currently all anchor to `projects.html` — needs per-project detail pages or section anchors
@@ -149,12 +171,17 @@ Replace the logo source with a working logo API. Two leading options:
 - Lead form tag + input focus → navy blue
 - Hero tag bar → `var(--navy)` background, white text
 - `.commitment-section` background → `var(--surface)` (no gradient)
-- Logo cards: `filter: grayscale(0.8) opacity(0.85)` at rest, full color on hover
+- Logo cards: `filter: grayscale(0.8) opacity(0.85)` at rest, full color + name badge on hover
+- Flip cards: all 4 equal height (440px); front/back both `position: absolute; inset: 0`
 
 ---
 
-## Git History (pre-session)
+## Git Log
 ```
+4b797bf Fix flip card equal sizing, standardize logo size, fix arrow encoding
+8d82b08 Client logos: Google Favicon + Wikimedia overrides, name shown on hover
+e9841b2 Content audit: align all pages to spec, fix logos, add bento cards
+a1d6d55 Fix hero tag bg to navy, WOW line bleed fix, add HANDOFF.md
 24fe66d Fix WOW hover line, blue hero tag, blue play buttons, logo domains
 6dc4fa4 UI polish: blue accents, blur fix, logo hover scale, year visibility
 9ffe98a Client revisions: brand colors, logos, clientele grid, 20-Years badge, portfolio gaps, mobile nav, about page
