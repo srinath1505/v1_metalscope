@@ -55,9 +55,13 @@
 window.tryFallbackLogo = function(img) {
   if (!img.dataset.fallback) {
     img.dataset.fallback = '1';
-    var m = img.src.match(/cdn\.brandfetch\.io\/([^/?]+)/);
-    var domain = m ? m[1] : img.src.split('/').filter(Boolean).pop();
-    img.src = 'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.' + domain + '&size=256';
+    var m = img.src.match(/[?&]domain=([^&]+)/);
+    if (m) {
+      img.src = 'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.' + m[1] + '&size=256';
+    } else {
+      img.closest('.client-logo-card').classList.add('name-only');
+      img.style.display = 'none';
+    }
   } else {
     img.closest('.client-logo-card').classList.add('name-only');
     img.style.display = 'none';

@@ -1123,6 +1123,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 18px 12px;
   height: 90px;
   gap: 6px;
+  position: relative;
+  overflow: hidden;
   transition: background 0.25s, box-shadow 0.25s;
   cursor: default;
 }
@@ -1132,7 +1134,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   box-shadow: 0 0 0 1px var(--navy);
 }
 .client-logo-card img {
-  max-height: 38px;
+  max-height: 42px;
   max-width: 90px;
   width: auto;
   height: auto;
@@ -1140,24 +1142,45 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   filter: grayscale(0.8) opacity(0.85);
   transition: filter 0.35s, transform 0.35s var(--ease-out);
 }
-.client-logo-card:hover img { filter: grayscale(0) opacity(1); transform: scale(1.18); }
+.client-logo-card:hover img { filter: grayscale(0) opacity(1); transform: scale(1.12); }
 .client-logo-card .client-name-badge {
-  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(10, 20, 50, 0.86);
+  color: #fff;
   font-family: var(--font-display);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--text);
   text-align: center;
+  padding: 5px 6px;
   line-height: 1.2;
-  max-width: 86px;
-  padding: 6px 10px;
-  border-radius: 3px;
-  border: 1.5px solid var(--border);
-  background: var(--white);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.22s, transform 0.22s var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.client-logo-card.name-only .client-name-badge { display: block; }
+.client-logo-card:hover .client-name-badge { opacity: 1; transform: translateY(0); }
+.client-logo-card.name-only .client-name-badge {
+  position: static;
+  transform: none;
+  opacity: 1;
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: 3px;
+  padding: 6px 10px;
+  max-width: 86px;
+  overflow: visible;
+  white-space: normal;
+  pointer-events: auto;
+}
 .client-logo-card.name-only img { display: none; }
 .client-logo-card.name-only:nth-child(even) .client-name-badge {
   border-color: rgba(27,127,193,0.35);
