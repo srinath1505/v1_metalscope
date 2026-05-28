@@ -780,7 +780,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── WAY OF WORKING (DARK SECTION) ───────────────────────── */
-.wow-section { background: var(--black); color: var(--white); }
+.wow-section {
+  background: url('../logo/wow.jpeg') center center / cover no-repeat;
+  color: var(--white);
+  position: relative;
+}
+.wow-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  z-index: 0;
+}
+.wow-section .container {
+  position: relative;
+  z-index: 1;
+}
 .wow-header { margin-bottom: 56px; }
 .wow-section .section-tag { color: rgba(255,255,255,0.5); }
 .wow-section .section-tag::before { background: rgba(255,255,255,0.3); }
