@@ -1679,6 +1679,47 @@ button {
   }
 }
 
+/* ── CLIENT LOGO CAROUSEL ────────────────────────────────── */
+.logo-carousel {
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: logoMarquee 40s linear infinite;
+}
+.logo-carousel:hover .logo-track {
+  animation-play-state: paused;
+}
+.logo-item {
+  flex-shrink: 0;
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid var(--border);
+}
+.logo-item img {
+  height: 52px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  filter: grayscale(0.8) opacity(0.65);
+  transition: filter 0.3s var(--ease-out);
+  display: block;
+}
+.logo-item:hover img {
+  filter: grayscale(0) opacity(1);
+}
+@keyframes logoMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* ── TESTIMONIALS SECTION ─────────────────────────────────── */
 .testimonials-section {
   background: var(--black);
