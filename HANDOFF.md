@@ -154,11 +154,49 @@ Replaced Brandfetch CDN (deprecated) with a two-tier system matching `logo.html`
 
 ---
 
+### Phase 13 — Stat Bento Cards (index.html)
+Replaced the vertical list of 5 stat rows with icon + number + label bento cards:
+- 6-column CSS grid: top row = 3 equal cards (`span 2`), bottom row = 2 wider cards (`span 3`)
+- Each card: SVG icon (clock, factory, bridge, train, checklist), counter number, short label
+- Hover: `translateY(-5px)` + navy blue shadow `rgba(26,127,193,0.38)` — no red border
+- Counter JS observer selector updated: `.stat-item` → `.stat-card`
+- Mobile (≤900px): collapses to 2-col uniform grid
+
+### Phase 13 — Clickable Vertical Cards (verticals.html)
+Made entire `.vertical-hub-card` clickable (not just the button):
+- Each `<div class="vertical-hub-card">` → `<a href="X.html" class="vertical-hub-card">`
+- Inner `<a class="btn">` → `<span class="btn">` (avoids nested anchors — invalid HTML)
+- CSS: added `color: inherit; text-decoration: none; cursor: pointer` to `.vertical-hub-card`
+
+### Phase 14 — WOW Section Background (index.html + css/style.css)
+Replaced solid `var(--black)` background with a real factory image:
+- Image: `logo/wow.jpeg` (two workers passing a steel baton in a factory)
+- CSS: `background: url('../logo/wow.jpeg') center center / cover no-repeat`
+- `::before` pseudo-element overlay: `rgba(0,0,0,0.72)` — keeps all text/icons legible
+- `.wow-section .container` lifted to `z-index: 1` above the overlay
+
+### Phase 15 — Client Logo Carousel (index.html + css/style.css + logo/client_logo/)
+Replaced 56-card CDN favicon grid with a pure-CSS infinite marquee carousel:
+
+**Logo assets:**
+- 21 actual client logos received as WhatsApp images, renamed to clean slugs in `logo/client_logo/`:
+  `ascendas`, `arun-excello`, `bsh`, `es-hospital`, `fujita`, `gs-lay-college`, `hero-cycles`,
+  `indian-oil`, `indian-railways`, `isuzu`, `mes`, `michelin`, `mylan`, `ola-electric`,
+  `pcbl`, `pg`, `senara`, `strides-shasun`, `terex`, `welspun-flooring`, `welspun-one`
+
+**Carousel mechanics:**
+- Two identical strips of 21 logos concatenated → `@keyframes logoMarquee` scrolls from `0` to `-50%` (40s, linear, infinite)
+- Pauses on hover: `.logo-carousel:hover .logo-track { animation-play-state: paused }`
+- Edge fade: `mask-image` gradient (transparent → opaque at 6%, opaque → transparent at 94%)
+- Logos: `height: 52px; object-fit: contain; filter: grayscale(0.8) opacity(0.65)` at rest → full colour on hover
+- To add more logos: drop file in `logo/client_logo/`, add one `<div class="logo-item">` line in both strips in `index.html`
+
 ## Known Remaining Items
 - **Images**: Actual MetalScope project photos needed — currently Unsplash placeholders. Client to provide.
 - **Testimonials**: 3 video cards on home page (Honda Cars India, Foxconn, ICF Chennai) — YouTube/video links to be added by client
 - **"Know More" links** on projects.html: currently all anchor to `projects.html` — needs per-project detail pages or section anchors
 - **epc.html / highrise-datacentres.html**: full content awaits client brief
+- **Client logo carousel**: currently hardcoded HTML — adding new logos requires adding `<div class="logo-item">` to both strips in `index.html` (see Phase 15 note above)
 
 ---
 
@@ -176,8 +214,23 @@ Replaced Brandfetch CDN (deprecated) with a two-tier system matching `logo.html`
 
 ---
 
+## UI/Design Rules Added (this session)
+- Stat cards: navy hover shadow only (`rgba(26,127,193,0.38)`), no red border
+- WOW section: full-bleed image bg (`logo/wow.jpeg`) + `rgba(0,0,0,0.72)` overlay
+- Vertical hub cards: entire card is `<a>` wrapper — full card clickable, button is `<span>`
+- Client carousel: greyscale at rest → full colour on hover; pauses on hover; edge fade
+
+---
+
 ## Git Log
 ```
+b5e79b0 Clientele: replace CDN grid with infinite marquee carousel
+2e57664 Manual CSS edits + add wow.jpeg asset
+06b719d WOW section: factory image background with dark overlay
+5c640de Stat cards: stronger navy shadow on hover (0.38 opacity)
+0b55b82 Stat cards: navy shadow on hover, remove red border
+4256040 UI: stat bento cards, clickable vertical cards
+25ab084 Update HANDOFF.md with Phase 9-12 session changes
 4b797bf Fix flip card equal sizing, standardize logo size, fix arrow encoding
 8d82b08 Client logos: Google Favicon + Wikimedia overrides, name shown on hover
 e9841b2 Content audit: align all pages to spec, fix logos, add bento cards
