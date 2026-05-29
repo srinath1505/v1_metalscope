@@ -1291,71 +1291,67 @@ button {
 .commitment-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
+  gap: 20px;
   margin-top: 48px;
-  background: var(--border);
 }
 
 .commitment-card {
-  padding: 32px 24px;
-  background: var(--white);
-  border-top: 3px solid transparent;
-  transition: background 0.3s, border-color 0.3s;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  padding: 36px 24px 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.commitment-card:nth-child(odd) {
-  border-top-color: var(--navy);
-}
-
-.commitment-card:nth-child(even) {
-  border-top-color: var(--red);
+.commitment-card::after {
+  content: '';
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 4px;
+  background: var(--red);
+  border-radius: 2px;
 }
 
 .commitment-card:hover {
-  background: var(--surface);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.13);
 }
 
 .commitment-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 4px;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #f0f1f3;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
-.commitment-card:nth-child(odd) .commitment-icon {
-  background: rgba(26, 127, 193, 0.1);
-}
-
-.commitment-card:nth-child(even) .commitment-icon {
-  background: rgba(215, 34, 38, 0.08);
-}
-
-.commitment-card:nth-child(odd) .commitment-icon svg {
-  stroke: var(--navy);
-}
-
-.commitment-card:nth-child(even) .commitment-icon svg {
-  stroke: var(--red);
-}
-
-.commitment-icon svg {
-  width: 24px;
-  height: 24px;
-  fill: none;
-  stroke-width: 1.5;
+.commitment-icon i {
+  font-size: 34px;
+  color: var(--navy);
 }
 
 .commitment-card h3 {
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--text);
-  line-height: 1.3;
+  color: var(--black);
+  line-height: 1.4;
+  margin: 0;
 }
 
 @media (max-width: 900px) {
@@ -1690,7 +1686,7 @@ button {
 .logo-track {
   display: flex;
   width: max-content;
-  animation: logoMarquee 40s linear infinite;
+  animation: logoMarquee 75s linear infinite;
 }
 .logo-carousel:hover .logo-track {
   animation-play-state: paused;
